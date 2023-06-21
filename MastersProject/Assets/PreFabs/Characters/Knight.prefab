@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 90658630358569654}
   - component: {fileID: 6602321401701859959}
+  - component: {fileID: 7475312437762343151}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -49,6 +50,21 @@ MonoBehaviour:
   Stamina: 100
   AttackDamage: 30
   AttackSpeed: 3
+  AttackRange: 3
+  SightRange: 20
+--- !u!65 &7475312437762343151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6926432304137971914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.3607934, z: 0.5}
+  m_Center: {x: 0, y: 0.6803967, z: 0}
 --- !u!1001 &1107032523418833392
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65,17 +81,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e8503ab5e21a45546ae4b7a5a1db97fb,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e8503ab5e21a45546ae4b7a5a1db97fb,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e8503ab5e21a45546ae4b7a5a1db97fb,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e8503ab5e21a45546ae4b7a5a1db97fb,
         type: 3}

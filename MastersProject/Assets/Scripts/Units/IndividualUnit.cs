@@ -10,4 +10,6 @@ public class IndividualUnit : MonoBehaviour
     public int Stamina = 100;
     public int AttackDamage = 30;
     public float AttackSpeed = 3.0f;
+    public float AttackRange = 3.0f;
+    public float SightRange = 20.0f;
 }
