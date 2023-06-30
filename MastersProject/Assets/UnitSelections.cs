@@ -26,7 +26,13 @@ public class UnitSelections : MonoBehaviour
     {
         DeselectAll();
         unitSelected.Add(unitToAdd);
-        unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
+        for (int i = 0; i < unitToAdd.transform.childCount; i++)
+        {
+            unitToAdd.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(true);           
+        }
+        
+        
+        
         unitToAdd.GetComponent<UnitMovement>().enabled = true;
     }
     public void ShiftSelect(GameObject unitToAdd)
@@ -34,13 +40,13 @@ public class UnitSelections : MonoBehaviour
         if(!unitSelected.Contains(unitToAdd))
         {
             unitSelected.Add(unitToAdd);
-            unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
+            unitToAdd.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.SetActive(true);
             unitToAdd.GetComponent<UnitMovement>().enabled = true;
         }
         else
         {
             unitToAdd.GetComponent<UnitMovement>().enabled = false;
-            unitToAdd.transform.GetChild(0).gameObject.SetActive(false);
+            unitToAdd.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.SetActive(false);
             unitSelected.Remove(unitToAdd);
 
         }
@@ -49,17 +55,27 @@ public class UnitSelections : MonoBehaviour
     {
         if(!unitSelected.Contains(unitToAdd))
         {
+            for (int i = 0; i < unitToAdd.transform.childCount; i++)
+            {
+               
+                unitToAdd.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                unitToAdd.GetComponent<UnitMovement>().enabled = true;
+            }
             unitSelected.Add(unitToAdd);
-            unitToAdd.transform.GetChild(0).gameObject.SetActive(true);
-            unitToAdd.GetComponent<UnitMovement>().enabled = true;
+
         }
     }
     public void DeselectAll()
     {
         foreach (var unit in unitSelected)
         {
-            unit.GetComponent<UnitMovement>().enabled = false;
-            unit.transform.GetChild(0).gameObject.SetActive(false);
+
+            for (int i = 0; i < unit.transform.childCount; i++)
+            {
+                
+                unit.transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(false);
+                unit.GetComponent<UnitMovement>().enabled = false;
+            }
 
         }
         unitSelected.Clear();

@@ -6,15 +6,18 @@ using UnityEngine.AI;
 public class UnitMovement : MonoBehaviour
 {
     public Camera myCam;
-    public NavMeshAgent myAgent;
+    public List<NavMeshAgent> agents = new List<NavMeshAgent>();
     public LayerMask ground;
 
     void Start()
     {
         myCam = Camera.main;
-        myAgent = GetComponent<NavMeshAgent>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            
+            agents.Add(transform.GetChild(i).GetComponent<NavMeshAgent>());
+        }
     }
-
 
     void Update()
     {
@@ -25,7 +28,11 @@ public class UnitMovement : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, ground))
             {
-                myAgent.SetDestination(hit.point);
+                for (int i = 0; i < agents.Count; i++)
+                {
+                    agents[i].SetDestination(hit.point);
+                   
+                }
             }
         }
     }

@@ -28,7 +28,7 @@ public class UnitClick : MonoBehaviour
                 }
                 else
                 {
-                    UnitSelections.Instance.ClickSelect(hit.collider.gameObject);
+                    UnitSelections.Instance.ClickSelect(hit.collider.transform.parent.gameObject);
                 }
             }
             else
