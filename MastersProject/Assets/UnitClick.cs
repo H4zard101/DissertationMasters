@@ -24,7 +24,7 @@ public class UnitClick : MonoBehaviour
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     Debug.Log("Shift");
-                    UnitSelections.Instance.ShiftSelect(hit.collider.gameObject);
+                    UnitSelections.Instance.ShiftSelect(hit.collider.transform.parent.gameObject);
                 }
                 else
                 {
