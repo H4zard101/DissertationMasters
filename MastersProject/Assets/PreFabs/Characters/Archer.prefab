@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7475312437762343151}
   - component: {fileID: 4895410375090289489}
   m_Layer: 7
-  m_Name: Knight
+  m_Name: Archer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.15
-  m_Speed: 2
+  m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

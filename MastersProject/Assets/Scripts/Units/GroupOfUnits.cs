@@ -39,7 +39,7 @@ public class GroupOfUnits : MonoBehaviour
     }
 
 
-    public void Update()
+    public void Start()
     {
         SetFormations();
     }
@@ -82,38 +82,4 @@ public class GroupOfUnits : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    //public void Start()
-    //{
-    //for (int i = 0; i < width; i++)
-    //{
-    //    for (int j = 0; j < depth; j++)
-    //    {
-    //        //var unit = Instantiate(UnitObject, new Vector3(i * 2.0f, 0, j), Quaternion.identity);
-    //        var unit = Instantiate(UnitObject, new Vector3(transform.position.x + i * 2.0f, 0, transform.position.z + j), Quaternion.identity);
-
-    //        unit.transform.SetParent(gameObject.transform);
-    //    }
-    //}
-
-
-
-    //for (int i = 0; i < UnitSize; i++)
-    //{
-    //    var unit = Instantiate(UnitObject, new Vector3 (i * 2.0f,0,0), Quaternion.identity);
-
-    //    unit.transform.SetParent(gameObject.transform);
-    //}
-    //}
 }

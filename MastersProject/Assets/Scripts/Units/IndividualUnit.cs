@@ -12,4 +12,9 @@ public class IndividualUnit : MonoBehaviour
     public float AttackSpeed = 3.0f;
     public float AttackRange = 3.0f;
     public float SightRange = 20.0f;
+
+
+    [Header("ID Number")]
+    public int ID_X;
+    public int ID_Z;
 }
