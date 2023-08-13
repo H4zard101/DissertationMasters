@@ -9,10 +9,13 @@ public class UnitMovement : MonoBehaviour
     public List<NavMeshAgent> agents = new List<NavMeshAgent>();
     public LayerMask ground;
     public GameObject prefab;
+    public NavMeshAgent parentAgent;
 
     void Start()
     {
         myCam = Camera.main;
+
+        parentAgent = this.gameObject.GetComponent<NavMeshAgent>();
 
         for (int i = 0; i < transform.childCount; i++)
         {           
@@ -61,6 +64,7 @@ public class UnitMovement : MonoBehaviour
                     targetPosition.x = startx;
                     targetPosition.z++;
                 }
+                parentAgent.SetDestination(hit.point);
                 agents[i].SetDestination(new Vector3(targetPosition.x + hit.point.x - 3.5f, targetPosition.y + hit.point.y, targetPosition.z + hit.point.z));
 
 

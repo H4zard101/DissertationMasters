@@ -36,12 +36,13 @@ public class GroupOfUnits : MonoBehaviour
     public void Awake()
     {
         _parent = this.gameObject.transform;
+        SetFormations();
     }
 
 
     public void Start()
     {
-        SetFormations();
+
     }
 
     public void SetFormations()

@@ -9,7 +9,14 @@ public class Goal_Idle : Goal_Base
     {
         return Priority;
     }
-
+    public override void OnGoalActivated(Action_Base _linkedAction)
+    {
+        base.OnGoalActivated(_linkedAction);
+    }
+    public override void OnGoalDeactivated()
+    {
+        base.OnGoalDeactivated();
+    }
     public override bool CanRun()
     {
         return true;

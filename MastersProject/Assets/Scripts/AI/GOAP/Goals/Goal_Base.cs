@@ -8,27 +8,28 @@ public interface IGoal
       bool CanRun();
       void OnTickGoal();
       float OnCalculatePriority();
-      void OnGoalActivated();
+      void OnGoalActivated(Action_Base _linkedAction);
       void OnGoalDeactivated();
 }
 
 
 public class Goal_Base : MonoBehaviour, IGoal
 {
-    protected NavMeshAgent agent;
+    protected CharacterAgent agent;
+    protected AwarnessSystem Sensor;
+    protected Action_Base LinkedAction;
 
+    protected List<GameObject> routePoints = new List<GameObject>();
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<CharacterAgent>();
+        Sensor = GetComponent<AwarnessSystem>();
     }
 
-    public void Start()
-    {
-        
-    }
     public void Update()
     {
         OnTickGoal();
+        
     }
     public virtual bool CanRun()
     {
@@ -42,13 +43,13 @@ public class Goal_Base : MonoBehaviour, IGoal
     {
         return -1;
     }
-    public virtual void OnGoalActivated()
+    public virtual void OnGoalActivated(Action_Base _linkedAction)
     {
-
+        LinkedAction = _linkedAction;
     }
     public virtual void OnGoalDeactivated()
     {
-
+        LinkedAction = null;
     }
 
 }

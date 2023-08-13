@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEditor;
 #endif // UNITY_EDITOR
 
-[RequireComponent(typeof(AwarnessSystem))]
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] float _VisionConeAngle = 60f;

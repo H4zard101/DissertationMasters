@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-class TrackedTarget
+public class TrackedTarget
 {
     public DetectableTarget Detectable;
     public Vector3 RawPosition;
@@ -62,7 +62,6 @@ class TrackedTarget
     }
 }
 
-[RequireComponent(typeof(EnemyAI))]
 public class AwarnessSystem : MonoBehaviour
 {
 
@@ -79,6 +78,8 @@ public class AwarnessSystem : MonoBehaviour
     [SerializeField] float AwarenessDecayRate = 0.1f;
 
     EnemyAI LinkedAI;
+
+    public Dictionary<GameObject, TrackedTarget> ActiveTargets => Targets;
     void Start()
     {
         LinkedAI = GetComponent<EnemyAI>();

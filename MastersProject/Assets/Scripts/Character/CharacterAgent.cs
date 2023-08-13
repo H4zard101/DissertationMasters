@@ -4,51 +4,89 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class CharacterAgent : CharacterBase
+public class CharacterAgent : MonoBehaviour
 {
-    NavMeshAgent agent;
+    public List<NavMeshAgent> agent = new List<NavMeshAgent>();
     bool DestinationSet = false;
-    protected override void Start()
+
+    bool ReachedDestination = false;
+
+    public bool IsMoving;
+    public bool AtDestination => ReachedDestination;
+    public void Start()
     {
-        base.Start();
-        agent = GetComponent<NavMeshAgent>();
-    }
-    protected override void Update()
-    {
-        base.Update();
-        if(Input.GetMouseButtonDown(0))
+        agent.Add(this.gameObject.GetComponent<NavMeshAgent>());
+        foreach (Transform CHILD in transform)
         {
-            MoveTo(Vector3.zero);
+            Debug.Log("Child");
+            agent.Add(CHILD.GetComponent<NavMeshAgent>());
         }
 
-        if(!agent.pathPending && DestinationSet && (agent.remainingDistance <= agent.stoppingDistance))
+    }
+    public void Update()
+    {
+
+        for (int i = 0; i < agent.Count; i++)
         {
-            DestinationSet = false;
-            Debug.Log("Hello there");
+            if(agent[i].velocity.magnitude > float.Epsilon)
+            {
+                IsMoving = true;
+            }
+            if (!agent[i].pathPending && DestinationSet && (agent[i].remainingDistance <= agent[i].stoppingDistance))
+            {
+                DestinationSet = false;
+                ReachedDestination = true;
+            }
         }
+        
         
     }
 
-    protected virtual void CancelCurrentCommand()
+    public void CancelCurrentCommand()
     {
         // Clear the current path
-        agent.ResetPath();
-        DestinationSet = false;
+        for (int i = 0; i < agent.Count; i++)
+        {
+            agent[i].ResetPath();
+            DestinationSet = false;
+            ReachedDestination = false;
+        }
+
     }
-    public virtual void MoveTo(Vector3 destination)
+    public void MoveTo(Vector3 destination)
     {
         CancelCurrentCommand();
         SetDestination(destination);
     }
 
-    public virtual void SetDestination(Vector3 destination)
+    public Vector3 PickLocationInRange(float range)
+    {
+        Vector3 searchLocation = transform.position;
+
+        searchLocation += Random.Range(-range, range) * Vector3.forward;
+        searchLocation += Random.Range(-range, range) * Vector3.right;
+
+        NavMeshHit hitResult;
+        if (NavMesh.SamplePosition(searchLocation, out hitResult, 5f, NavMesh.AllAreas))
+        {
+            return hitResult.position;
+        }
+        return transform.position;
+    }
+    public void SetDestination(Vector3 destination)
     {
         // If the point isnt available then find the nearest point that is
         NavMeshHit hitResult;
         if(NavMesh.SamplePosition(destination, out hitResult, 5f, NavMesh.AllAreas))
         {
-            agent.SetDestination(destination);
-            DestinationSet = true;
+            for (int i = 0; i < agent.Count; i++)
+            {
+                agent[i].SetDestination(destination);
+                DestinationSet = true;
+                ReachedDestination = false;
+            }
+
+
         }    
 
     }
